@@ -31,4 +31,16 @@ class PersonTest < ActiveSupport::TestCase
     person.valid?
     assert_equal "is not a valid date", person.errors[:birthdate][0]
   end
+
+  def test_call_method_is_being_called_when_person_is_created
+    person = FactoryGirl.build(:person)
+    person.expects(:call).with(:create).returns(true)
+    assert person.save
+  end
+
+  def test_call_method_is_being_called_when_person_is_destroyed
+    person = FactoryGirl.create(:person)
+    person.expects(:call).with(:destroy).returns(true)
+    assert person.destroy
+  end
 end

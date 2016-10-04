@@ -1,4 +1,5 @@
 class Person < ActiveRecord::Base
+  include EventRecorder
 
   GENDER = %w(male female).freeze
 

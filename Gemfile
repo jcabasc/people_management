@@ -40,6 +40,8 @@ end
 group :test do
   gem 'database_cleaner', '~> 1.5.3'
   gem 'minitest-rails', '~> 2.2.1'
+  gem "minitest-red_green"
+  gem 'mocha'
   gem 'shoulda', '~> 3.5.0'
   gem 'shoulda-matchers', '~> 2.8.0'
   gem 'simplecov', require: false
