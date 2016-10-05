@@ -1,0 +1,31 @@
+<h2>People List</h2>
+<div class="row">
+  <div class="list-group">
+      <% people.each do |person| %>
+          <div class="list-group-item clearfix">
+              <div class="profile-teaser-left">
+                  <div class="profile-img">
+                  <div class="col-md-12 col-lg-12" align="center"> <img alt="User Pic" src=<%= person.picture_url %> class="img-circle img-responsive"> </div>
+                  </div>
+              </div>
+              <div class="profile-teaser-main">
+                  <h2 class="profile-name"><%= link_to person.full_name, person_path(person) %></h2>
+                  <div class="profile-info">
+                      <div class="info"><span class="">Email: </span><%= person.email %></div>
+                      <div class="info"><span class="">Age: </span> <%= person.age %></div>
+                      <div class="info">
+                        <%= link_to person_path(person), method: :delete, data: { confirm: "Are you sure you want to delete '#{person.full_name}'?"} do %>
+                          <i class="glyphicon glyphicon-trash"></i>
+                            Delete
+                        <% end %>
+                        <%= link_to edit_person_path(person) do %>
+                          <i class="glyphicon glyphicon-edit"></i>
+                            Edit
+                        <% end %>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        <% end %>
+      </div>
+</div>

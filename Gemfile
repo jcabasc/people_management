@@ -20,6 +20,7 @@ end
 gem 'puma', '3.6.0'
 
 # App
+gem 'decent_exposure', '2.3.3'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'resque', require: 'resque/server'

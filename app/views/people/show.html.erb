@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-5"><br></div>
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= person.full_name %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src=<%= person.picture_url %> class="img-circle img-responsive"> </div>
+          <div class=" col-md-9 col-lg-9">
+            <table class="table table-user-information">
+              <tbody>
+                <tr>
+                  <td>Email address</td>
+                  <td><%= person.email %></td>
+                </tr>
+                <tr>
+                  <td>Job</td>
+                  <td><%= person.job %></td>
+                </tr>
+                <tr>
+                  <td>Gender</td>
+                  <td><%= person.gender %></td>
+                </tr>
+                   <tr>
+                       <tr>
+                  <td>Age</td>
+                  <td><%= person.age %></td>
+                </tr>
+                  <tr>
+                  <td>Bio</td>
+                  <td><%= person.bio %></td>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+       <div class="panel-footer">
+          <a href="/people" data-original-title="People" data-toggle="tooltip" type="button" class="btn btn-sm"><i class="glyphicon glyphicon-arrow-left"></i> Back</a>
+          <span class="pull-right">
+              <a href="/people/<%= person.id %>/edit" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i> Edit</a>
+              <a data-confirm="Are you sure you want to delete this person from the database?" rel="nofollow" data-method="delete" href="/people/<%= person.id %>" data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i> Delete</a>
+          </span>
+          </div>
+    </div>
+  </div>
+</div>
