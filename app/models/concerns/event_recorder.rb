@@ -6,8 +6,7 @@ module EventRecorder
   end
 
   def call(action)
-    Person.where.not(id: id).each do |recipient|
-      "#{action.to_s.capitalize}PersonWorker".constantize.perform(self, recipient)
-    end
+    resource = self.decorate
+    Resque.enqueue("#{action.to_s.capitalize}PersonWorker".constantize, resource.id, resource.full_name)
   end
 end
