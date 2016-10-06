@@ -3,6 +3,8 @@ class Person < ActiveRecord::Base
 
   GENDER = %w(male female).freeze
 
+  default_scope { order('first_name DESC').order('last_name DESC') }
+
   validates :first_name, length: { maximum: 75 }
   validates :first_name, presence: true
 
@@ -23,23 +25,6 @@ class Person < ActiveRecord::Base
 
   validates :birthdate, presence: true
   validate :birthdate_cannot_be_in_the_future, :if => :birthdate?
-
-  def full_name
-    "#{first_name} #{last_name}"
-  end
-
-  def age
-    now = Date.today
-    now.year - birthdate.year - (birthdate.change(year: now.year) > now ? 1 : 0)
-  end
-
-  def picture_url
-    if picture?
-      picture
-    else
-      ActionController::Base.helpers.image_path("default-#{gender}.png")
-    end
-  end
 
   private
 

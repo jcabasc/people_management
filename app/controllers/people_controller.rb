@@ -1,13 +1,13 @@
 class PeopleController < ApplicationController
-  expose(:person, attributes: :person_params, finder_parameter: :id)
-  expose(:people) { Person.all.order(first_name: :desc, last_name: :desc) }
+  expose(:person) { params[:id].present? ? Person.find(params[:id]).decorate : Person.new }
+  expose(:people) { Person.all.map{ |person| PersonDecorator.new(person) } }
 
   def create
-    save_or_render
+    save_or_render(action: 'new')
   end
 
   def update
-    save_or_render
+    save_or_render(action: 'edit')
   end
 
   def destroy
@@ -17,7 +17,8 @@ class PeopleController < ApplicationController
 
   private
 
-  def save_or_render
+  def save_or_render(action:)
+    person.assign_attributes(person_params)
     if person.save
       flash[:success] = 'The person was saved!'
       redirect_to(person)

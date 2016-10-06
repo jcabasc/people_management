@@ -36,7 +36,7 @@ class PeopleControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Person.count') do
       post people_url,  person: person_params
     end
-    assert_redirected_to person_path(Person.last)
+    assert_redirected_to person_path(controller.person)
     assert_equal "The person was saved!", flash[:success]
   end
 
